@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Numerología Personal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 Numerología Personal</h1>
+        <p>Descubre la energía oculta de tu nombre y fecha de nacimiento.</p>
+
+        <label for="nombre">Tu nombre completo:</label>
+        <input type="text" id="nombre" placeholder="Ej. Julio">
+
+        <label for="fecha_nac">Fecha de nacimiento (DD/MM/AAAA):</label>
+        <input type="text" id="fecha_nac" placeholder="Ej. 15/03/1990" maxlength="10">
+
+        <button onclick="calcularNumerologia()">Calcular mi numerología</button>
+
+        <div id="resultado" class="resultado" style="display: none;"></div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
