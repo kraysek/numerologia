@@ -27,23 +27,139 @@ function reducirADigito(n) {
     return n;
 }
 
-// Interpretación de números (como un horóscopo personal)
+// Interpretación de números con colores, íconos y formato
 function interpretarNumero(numero) {
-    const significados = {
-        1: "Líder natural, independiente y pionero. Tienes fuerza para iniciar proyectos.",
-        2: "Diplomático, sensible y equilibrado. Excelente en relaciones y equipo.",
-        3: "Creativo, expresivo y comunicador. Tu energía atrae alegría.",
-        4: "Práctico, estable y trabajador. Eres la base de los demás.",
-        5: "Libre, adaptable y aventurero. Buscas cambio y experiencia.",
-        6: "Responsable, protector y familiar. Tu misión es cuidar.",
-        7: "Analítico, espiritual e introspectivo. Buscas la verdad.",
-        8: "Ambicioso, poderoso y orientado al éxito. Gran potencial material.",
-        9: "Humanitario, compasivo y sabio. Tu propósito es servir.",
-        11: "Intuitivo, inspirado e iluminado (número maestro).",
-        22: "Constructor, visionario y transformador (número maestro).",
-        33: "Maestro espiritual, servicio universal (número maestro)."
+    // Paleta de colores por número
+    const colores = {
+        1: '#0066cc',  // Azul líder
+        2: '#9c27b0',  // Púrpura diplomático
+        3: '#ff6f00',  // Naranja creativo
+        4: '#388e3c',  // Verde estable
+        5: '#1976d2',  // Azul aventurero
+        6: '#7b1fa2',  // Púrpura protector
+        7: '#5d4037',  // Marrón sabio
+        8: '#d32f2f',  // Rojo poderoso
+        9: '#00796b',  // Turquesa humanitario
+        11: '#8e24aa', // Púrpura maestro
+        22: '#0277bd', // Azul constructor
+        33: '#33691e'  // Verde maestro
     };
-    return significados[numero] || "Tu número tiene una energía única.";
+
+    const color = colores[numero] || '#1a1a1a';
+
+    const interpretaciones = {
+        1: {
+            nombre: "El Líder Pionero",
+            fortaleza: "Independencia absoluta y confianza inquebrantable.",
+            comunicacion: "Directo, claro y sin rodeos.",
+            cambio: "Lo impulsa, no lo espera.",
+            dinero: "Herramienta de poder y autonomía."
+        },
+        2: {
+            nombre: "El Diplomático Sensible",
+            fortaleza: "Empatía y habilidad para conectar.",
+            comunicacion: "Escucha activa, tono suave y persuasivo.",
+            cambio: "Prefiere transiciones suaves y apoyo.",
+            dinero: "Busca estabilidad para proteger a los suyos."
+        },
+        3: {
+            nombre: "El Creativo Expresivo",
+            fortaleza: "Imaginación ilimitada y alegría contagiosa.",
+            comunicacion: "Artística, humorística, con ritmo y estilo.",
+            cambio: "Lo celebra como una nueva obra de arte.",
+            dinero: "Lo invierte en experiencias y expresión personal."
+        },
+        4: {
+            nombre: "El Constructor Estable",
+            fortaleza: "Disciplina, orden y fiabilidad extrema.",
+            comunicacion: "Práctica, estructurada, sin florituras.",
+            cambio: "Necesita planificación previa.",
+            dinero: "Lo gestiona con rigor y sentido del deber."
+        },
+        5: {
+            nombre: "El Aventurero Libre",
+            fortaleza: "Adaptabilidad y curiosidad insaciable.",
+            comunicacion: "Espontánea, rápida y llena de energía.",
+            cambio: "Es su elemento natural.",
+            dinero: "Fluye con él, prefiere libertad sobre acumulación."
+        },
+        6: {
+            nombre: "El Protector Responsable",
+            fortaleza: "Compromiso familiar y sentido del deber.",
+            comunicacion: "Cálida, orientada a cuidar y armonizar.",
+            cambio: "Lo acepta si beneficia al hogar.",
+            dinero: "Lo usa para crear seguridad y bienestar."
+        },
+        7: {
+            nombre: "El Sabio Introspectivo",
+            fortaleza: "Profundidad mental y búsqueda de la verdad.",
+            comunicacion: "Reflexiva, precisa, a veces reservada.",
+            cambio: "Lo analiza desde la distancia.",
+            dinero: "Lo ve con desapego, prefiere conocimiento."
+        },
+        8: {
+            nombre: "El Ejecutivo Poderoso",
+            fortaleza: "Ambición, visión estratégica y autoridad.",
+            comunicacion: "Enfocada en resultados y negocios.",
+            cambio: "Lo convierte en oportunidad financiera.",
+            dinero: "Es su campo de juego y medida de éxito."
+        },
+        9: {
+            nombre: "El Humanitario Sabio",
+            fortaleza: "Compasión global y visión de cierre de ciclos.",
+            comunicacion: "Inspiradora, con propósito elevado.",
+            cambio: "Lo vive como una transformación necesaria.",
+            dinero: "Lo comparte o destina a causas mayores."
+        },
+        11: {
+            nombre: "El Visionario Inspirado (Maestro)",
+            fortaleza: "Intuición elevada y sensibilidad espiritual.",
+            comunicacion: "Reveladora, casi profética.",
+            cambio: "Lo percibe antes de que ocurra.",
+            dinero: "Fluye cuando sirve a una misión superior."
+        },
+        22: {
+            nombre: "El Constructor de Mundos (Maestro)",
+            fortaleza: "Capacidad de materializar sueños masivos.",
+            comunicacion: "Convincente, con visión de largo alcance.",
+            cambio: "Lo dirige con plan maestro.",
+            dinero: "Recurso para construir legado tangible."
+        },
+        33: {
+            nombre: "El Maestro Sanador (Maestro)",
+            fortaleza: "Amor incondicional y servicio universal.",
+            comunicacion: "Sanadora, con tono de paz y compasión.",
+            cambio: "Lo guía con sabiduría y calma.",
+            dinero: "Instrumento de sanación y ayuda colectiva."
+        }
+    };
+
+    const data = interpretaciones[numero];
+    if (!data) return "Tu número tiene una energía única y aún por descubrir.";
+
+    return `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+            <h3 style="color: ${color}; margin-bottom: 10px;">
+                <strong>${numero} – ${data.nombre}</strong>
+            </h3>
+            <p>
+                <span style="display: inline-block; background: ${color}; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin-right: 5px;">✨</span>
+                <strong>Fortaleza:</strong> ${data.fortaleza}
+            </p>
+            <p>
+                <span style="display: inline-block; background: #007bff; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin-right: 5px;">💬</span>
+                <strong>Comunicación:</strong> ${data.comunicacion}
+            </p>
+            <p>
+                <span style="display: inline-block; background: #ff6b35; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin-right: 5px;">🔄</span>
+                <strong>Ante el cambio:</strong> ${data.cambio}
+            </p>
+            <p>
+                <span style="display: inline-block; background: #43a047; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin-right: 5px;">💰</span>
+                <strong>Dinero:</strong> ${data.dinero}
+            </p>
+        </div>
+    `;
 }
 
 // Calcular Número de Camino de Vida (a partir de la fecha de nacimiento)
@@ -116,12 +232,21 @@ function calcularNumerologia() {
     const interpretacionNombre = interpretarNumero(numeroExpresion);
     const interpretacionVida = interpretarNumero(caminoDeVida);
 
-    // Mostrar resultado
+    // Mostrar resultado con desglose completo
     const resultadoDiv = document.getElementById('resultado');
     resultadoDiv.innerHTML = `
         <h2>🌟 Resultados para ${nombre}</h2>
-        <p><strong>Número de Expresión:</strong> ${numeroExpresion}</p>
+
+        <p><strong>Valores por letra:</strong> ${valores.join(' + ')} = <strong>${suma}</strong></p>
+        <p><strong>Número de letras:</strong> ${valores.length}</p>
+        <p><strong>Promedio (suma / letras):</strong> ${suma} / ${valores.length} = <strong>${promedio.toFixed(2)}</strong></p>
+        <p><strong>Promedio redondeado (1-5 baja, 6-9 sube):</strong> ${promedioRedondeado}</p>
+        <p><strong>Número de Expresión (reducido):</strong> ${numeroExpresion}</p>
+
         <p><strong>Interpretación:</strong> ${interpretacionNombre}</p>
+
+        <hr style="border: 1px dashed #555; margin: 15px 0;">
+
         <p><strong>Camino de Vida:</strong> ${caminoDeVida}</p>
         <p><strong>Significado:</strong> ${interpretacionVida}</p>
     `;
