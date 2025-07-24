@@ -44,9 +44,7 @@ function interpretarNumero(numero) {
         22: '#0277bd', // Azul constructor
         33: '#33691e'  // Verde maestro
     };
-
     const color = colores[numero] || '#1a1a1a';
-
     const interpretaciones = {
         1: {
             nombre: "El Líder Pionero",
@@ -133,10 +131,8 @@ function interpretarNumero(numero) {
             dinero: "Instrumento de sanación y ayuda colectiva."
         }
     };
-
     const data = interpretaciones[numero];
     if (!data) return "Tu número tiene una energía única y aún por descubrir.";
-
     return `
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">
             <h3 style="color: ${color}; margin-bottom: 10px;">
@@ -232,23 +228,42 @@ function calcularNumerologia() {
     const interpretacionNombre = interpretarNumero(numeroExpresion);
     const interpretacionVida = interpretarNumero(caminoDeVida);
 
-    // Mostrar resultado con desglose completo
+    // Mostrar resultado con desglose completo y botón de compartir
     const resultadoDiv = document.getElementById('resultado');
     resultadoDiv.innerHTML = `
         <h2>🌟 Resultados para ${nombre}</h2>
-
         <p><strong>Valores por letra:</strong> ${valores.join(' + ')} = <strong>${suma}</strong></p>
         <p><strong>Número de letras:</strong> ${valores.length}</p>
         <p><strong>Promedio (suma / letras):</strong> ${suma} / ${valores.length} = <strong>${promedio.toFixed(2)}</strong></p>
         <p><strong>Promedio redondeado (1-5 baja, 6-9 sube):</strong> ${promedioRedondeado}</p>
         <p><strong>Número de Expresión (reducido):</strong> ${numeroExpresion}</p>
-
         <p><strong>Interpretación:</strong> ${interpretacionNombre}</p>
-
         <hr style="border: 1px dashed #555; margin: 15px 0;">
-
         <p><strong>Camino de Vida:</strong> ${caminoDeVida}</p>
         <p><strong>Significado:</strong> ${interpretacionVida}</p>
+
+        <!-- Botones de compartir -->
+        <div class="compartir">
+            <p>Comparte tu resultado:</p>
+            <button onclick="compartirEnWhatsApp()" class="btn-whatsapp">WhatsApp</button>
+            <button onclick="compartirEnFacebook()" class="btn-facebook">Facebook</button>
+        </div>
     `;
     resultadoDiv.style.display = 'block';
+}
+
+// Función para compartir en WhatsApp
+function compartirEnWhatsApp() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const resultadoDiv = document.getElementById('resultado');
+    const numeroExpresion = resultadoDiv.querySelector('p strong')?.textContent || '';
+    const mensaje = `Mi número de expresión es ${numeroExpresion}. Descubre tu energía con la Numerología Personal: https://gammadigitalstudio.com/numerolog/`;
+    const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
+
+// Función para compartir en Facebook
+function compartirEnFacebook() {
+    const url = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://gammadigitalstudio.com/numerolog/');
+    window.open(url, '_blank');
 }
